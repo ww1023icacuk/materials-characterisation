@@ -44,18 +44,13 @@ class Evaluator:
         save_path=None,
         save_metrics_path=None,
     ):
-        """
-        Plot a confusion matrix and optionally save:
-        - the figure (save_path, e.g. 'plots/confusion_logistic.png')
-        - the numeric matrix as CSV (save_metrics_path, e.g. 'metrics/confusion_logistic.csv')
-        """
+  
         cm = confusion_matrix(y_true, y_pred)
 
         # Normalize if requested
         if normalize:
             cm = cm.astype("float") / cm.sum(axis=1, keepdims=True)
 
-        # -------- SAVE NUMERIC MATRIX AS CSV (OPTIONAL) --------
         if save_metrics_path is not None:
             import pandas as pd
             tick_labels = (
@@ -68,7 +63,6 @@ class Evaluator:
             )
             df_cm.to_csv(save_metrics_path)
 
-        # -------- PLOT THE MATRIX --------
         fig, ax = plt.subplots()
         im = ax.imshow(cm, interpolation="nearest", cmap=plt.cm.Blues)
         ax.figure.colorbar(im, ax=ax)
@@ -87,7 +81,6 @@ class Evaluator:
         ax.set_xticklabels(tick_labels, rotation=45, ha="right")
         ax.set_yticklabels(tick_labels)
 
-        # Annotate each cell
         fmt = ".2f" if normalize else "d"
         thresh = cm.max() / 2.0
         for i in range(cm.shape[0]):
@@ -103,7 +96,7 @@ class Evaluator:
 
         fig.tight_layout()
 
-        # -------- SAVE FIGURE (OPTIONAL) --------
+        # SAVE FIGURE YOU BITCH
         if save_path is not None:
             fig.savefig(save_path, dpi=300, bbox_inches="tight")
 
