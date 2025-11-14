@@ -28,7 +28,6 @@ class LogisticModel:
         return self.model.predict(X)
 
     def predict_proba(self, X):
-        # returns probability for each class
         return self.model.predict_proba(X)
 
 
@@ -51,7 +50,6 @@ class KNNModel:
         return self.model.predict(X)
 
     def predict_proba(self, X):
-        # KNN supports predict_proba
         return self.model.predict_proba(X)
 
 
@@ -78,7 +76,6 @@ class SVMModel:
         return self.model.predict(X)
 
     def predict_proba(self, X):
-        # only works because we set probability=True
         return self.model.predict_proba(X)
 
 
@@ -106,7 +103,6 @@ class RFModel:
         return self.model.predict_proba(X)
 
     def feature_importances(self):
-        # for Dataset 1 feature importance plots
         return self.model.feature_importances_
 
 
